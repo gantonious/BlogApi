@@ -33,6 +33,7 @@ namespace BlogApi.Controllers
         public IActionResult Post([FromBody]BlogPost blogPost)
         {
             blogPost.Id = Guid.NewGuid().ToString();
+            blogPost.DatePosted = DateTime.Now;
             _blogRepository.CreatePost(blogPost);
 
             return Created("blog post", blogPost);
