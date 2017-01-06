@@ -38,10 +38,12 @@ namespace BlogApi.Controllers
             return Created("blog post", blogPost);
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(string id)
         {
+            _blogRepository.DeletePost(id);
+
+            return Ok();
         }
     }
 }
