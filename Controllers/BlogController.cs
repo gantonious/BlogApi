@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlogApi.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class BlogController : Controller
     {
         private readonly IBlogRepository _blogRepository;
-        public ValuesController(IBlogRepository blogRepository) {
+        public BlogController(IBlogRepository blogRepository) {
             _blogRepository = blogRepository;
         }
 
