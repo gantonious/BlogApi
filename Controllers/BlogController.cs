@@ -1,3 +1,4 @@
+using BlogApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,30 +15,27 @@ namespace BlogApi.Controllers
             _blogRepository = blogRepository;
         }
 
-        // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<BlogPost> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _blogRepository.GetAll();
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public BlogPost Get(string id)
         {
-            return "value";
+            return _blogRepository.GetAll()
+                                  .Where(blogPost => blogPost.Id == id)
+                                  .FirstOrDefault();
         }
 
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]BlogPost blogPost)
         {
-        }
+            blogPost.Id = Guid.NewGuid().ToString();
+            _blogRepository.CreatePost(blogPost);
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
+            return Created("blog post", blogPost);
         }
 
         // DELETE api/values/5
