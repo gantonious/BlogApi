@@ -9,6 +9,11 @@ namespace BlogApi.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly IBlogRepository _blogRepository;
+        public ValuesController(IBlogRepository blogRepository) {
+            _blogRepository = blogRepository;
+        }
+
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
