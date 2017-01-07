@@ -5,7 +5,7 @@ using BlogApi.Models;
 namespace BlogApi {
     public class InMemoryBlogRepository : IBlogRepository
     {
-        private Dictionary<string, BlogPost> blogDictionary = new Dictionary<string, BlogPost>();
+        private IDictionary<string, BlogPost> blogDictionary = new Dictionary<string, BlogPost>();
         
         public void CreatePost(BlogPost blogPost)
         {
